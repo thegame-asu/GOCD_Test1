@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
  * JUnit 5 (with JUnitPlatform.class)
  *
  */
-@Disabled
+
 @RunWith(JUnitPlatform.class)
 @DisplayName("Testing using JUnit 5")
 public class JUnit5AppTest {
@@ -49,10 +49,18 @@ public class JUnit5AppTest {
   private static final Logger log = LoggerFactory.getLogger(JUnit5AppTest.class);
 
   private App classUnderTest;
+  NegativeNumbersTest obj1 = new NegativeNumbersTest();
 
   @BeforeAll
-  public static void init() {
+  public static void init()throws Exception {
     // Do something before ANY test is run in this class
+	  JUnit5AppTest obj =new JUnit5AppTest();	  
+		obj.setUp();
+		obj.testAdd();
+		obj.tearDown();
+		JUnit5AppTest.done();
+		//obj1 = new NegativeNumbersTest();
+	
     log.info("@BeforeAll: init()");
   }
 
@@ -107,7 +115,7 @@ public class JUnit5AppTest {
           //
           // Test #3
           long[] numbersToSum = new long[] { 2, 4, 6 };
-          long expectedSum = 12;
+          long expectedSum = 100;
           long actualSum = classUnderTest.add(numbersToSum);
           assertEquals(expectedSum, actualSum);
         });
@@ -115,7 +123,7 @@ public class JUnit5AppTest {
 
   @Nested
   @DisplayName("When numbers to add are < 0")
-  class NegativeNumbersTest {
+  public class NegativeNumbersTest {
 
     private App classUnderTest;
 
@@ -163,7 +171,7 @@ public class JUnit5AppTest {
 
   @Nested
   @DisplayName("When 0 < numbers > 0")
-  class PositiveAndNegativeNumbersTest {
+  public class PositiveAndNegativeNumbersTest {
 
     @Test
     @DisplayName("Three tests with both positive and negative numbers")
