@@ -49,8 +49,7 @@ public class JUnit5AppTest {
   private static final Logger log = LoggerFactory.getLogger(JUnit5AppTest.class);
 
   private App classUnderTest;
-  NegativeNumbersTest obj1 = new NegativeNumbersTest();
-
+  
   @BeforeAll
   public static void init()throws Exception {
     // Do something before ANY test is run in this class
@@ -59,9 +58,23 @@ public class JUnit5AppTest {
 		obj.testAdd();
 		obj.tearDown();
 		JUnit5AppTest.done();
-		//obj1 = new NegativeNumbersTest();
-	
-    log.info("@BeforeAll: init()");
+		
+		//Negative numbers
+		obj.new NegativeNumbersTest();		
+		obj.setUp();
+		obj.testAdd();
+		obj.tearDown();
+		JUnit5AppTest.done();
+		
+		//PositiveAndNegativeNumbersTest
+		obj.new PositiveAndNegativeNumbersTest();
+		obj.setUp();
+		obj.testAdd();
+		obj.tearDown();
+		JUnit5AppTest.done();
+		
+		//JUnit5AppSingleOperandTest
+		log.info("@BeforeAll: init()");
   }
 
   @AfterAll
@@ -123,7 +136,7 @@ public class JUnit5AppTest {
 
   @Nested
   @DisplayName("When numbers to add are < 0")
-  public class NegativeNumbersTest {
+  class NegativeNumbersTest {
 
     private App classUnderTest;
 
@@ -171,7 +184,7 @@ public class JUnit5AppTest {
 
   @Nested
   @DisplayName("When 0 < numbers > 0")
-  public class PositiveAndNegativeNumbersTest {
+  class PositiveAndNegativeNumbersTest {
 
     @Test
     @DisplayName("Three tests with both positive and negative numbers")
