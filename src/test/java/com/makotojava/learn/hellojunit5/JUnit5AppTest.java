@@ -49,7 +49,8 @@ public class JUnit5AppTest {
   private static final Logger log = LoggerFactory.getLogger(JUnit5AppTest.class);
 
   private App classUnderTest;
-  
+  NegativeNumbersTest obj1 = new NegativeNumbersTest();
+
   @BeforeAll
   public static void init()throws Exception {
     // Do something before ANY test is run in this class
@@ -58,23 +59,9 @@ public class JUnit5AppTest {
 		obj.testAdd();
 		obj.tearDown();
 		JUnit5AppTest.done();
-		
-		//Negative numbers
-		obj.new NegativeNumbersTest();		
-		obj.setUp();
-		obj.testAdd();
-		obj.tearDown();
-		JUnit5AppTest.done();
-		
-		//PositiveAndNegativeNumbersTest
-		obj.new PositiveAndNegativeNumbersTest();
-		obj.setUp();
-		obj.testAdd();
-		obj.tearDown();
-		JUnit5AppTest.done();
-		
-		//JUnit5AppSingleOperandTest
-		log.info("@BeforeAll: init()");
+		//obj1 = new NegativeNumbersTest();
+	
+    log.info("@BeforeAll: init()");
   }
 
   @AfterAll
@@ -128,7 +115,7 @@ public class JUnit5AppTest {
           //
           // Test #3
           long[] numbersToSum = new long[] { 2, 4, 6 };
-          long expectedSum = 100;
+          long expectedSum = 12;
           long actualSum = classUnderTest.add(numbersToSum);
           assertEquals(expectedSum, actualSum);
         });
