@@ -1,4 +1,4 @@
-package com.makotojava.learn.hellojunit5.solution;
+package com.makotojava.learn.hellojunit5;
 
 /*
  * Copyright 2017 Makoto Consulting Group, Inc.
